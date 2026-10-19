@@ -1,0 +1,228 @@
+/* ==========================================================================
+   Petition page - base styles (everything except the title typography).
+   The title (verse + wordmark) typography lives in css/title-option-*.css.
+
+   Fit-to-screen: every size is a multiple of --u, a unit that is 1% of the page
+   width.  --u follows the viewport WIDTH (capped at the 1024px design size) and
+   is also capped by the viewport HEIGHT, so the whole page always fits the screen
+   without scrolling.  Only the card text has a floor (11px) so it stays readable.
+   ========================================================================== */
+
+:root {
+  --navy: #012045;
+  --card: #f2f8fc;
+  --ink: #1d2a44;
+  --ink-title: #031a3e;
+  --ink-script: #050505;
+  --accent: #1f5fbf;
+  --accent-soft: #e8f1fb;
+  --navy-hover: #0b3a78;
+  --navy-pressed: #00142e;
+  --focus: #7fb2ff;
+  --error: #c0392b;
+  --border: #c3cfe0;
+  --muted: #55637d;
+  --font: 'Heebo', system-ui, 'Segoe UI', Arial, sans-serif;
+
+  /* 1u = 1% of the page width.  The page is 100u wide and ~154u tall. */
+  --u: min(1vw, 10.24px, calc(100vh / 156));
+}
+
+@supports (height: 100dvh) {
+  :root { --u: min(1vw, 10.24px, calc(100dvh / 156)); }
+}
+
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+* { margin: 0; }
+
+body {
+  display: flex;
+  justify-content: center;
+  min-height: 100vh;
+  background: #fff;
+  font-family: var(--font);
+}
+
+@supports (height: 100dvh) {
+  body { min-height: 100dvh; }
+}
+
+/* ---- Page frame --------------------------------------------------------- */
+
+.page {
+  position: relative;
+  width: calc(100 * var(--u));
+  margin-block: auto; /* centred vertically when the screen is taller than the page */
+  overflow: hidden;
+  background: url(../images/background-top.jpg) top / 100% auto no-repeat;
+}
+
+.blessing {
+  position: absolute;
+  top: calc(1.6 * var(--u));
+  right: calc(2.4 * var(--u));
+  z-index: 1;
+  font-size: max(10px, calc(2 * var(--u)));
+  font-weight: 500;
+  color: var(--navy);
+}
+
+/* ---- Masthead (verse + wordmark); fonts/sizes come from title-option-*.css */
+
+.masthead { position: relative; }
+
+.verse {
+  position: absolute;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-size: max(11px, calc(2.9 * var(--u)));
+  line-height: 1.3;
+  color: var(--ink-script);
+}
+
+.wordmark {
+  height: calc(25.8 * var(--u));
+  text-align: center;
+  white-space: nowrap;
+  line-height: 1;
+  color: var(--ink-script);
+}
+
+/* ---- Petition headline -------------------------------------------------- */
+
+.headline {
+  margin: 0 calc(1 * var(--u)) calc(2.05 * var(--u));
+  text-align: center;
+  font-size: max(13px, calc(4.4 * var(--u)));
+  font-weight: 900;
+  line-height: calc(5.5 * var(--u));
+  color: var(--ink-title);
+}
+
+.headline__line {
+  display: block;
+  text-wrap: balance; /* the long line breaks evenly on narrow screens */
+}
+
+.headline__line--lead { font-size: max(16px, calc(5.6 * var(--u))); }
+.headline__line--detail { font-size: max(11px, calc(3.74 * var(--u))); } /* ~85% of the line above */
+
+/* ---- Cards --------------------------------------------------------------- */
+
+.cards {
+  display: flex;
+  flex-direction: column;
+  gap: calc(1.27 * var(--u));
+  padding: 0 calc(3.1 * var(--u));
+}
+
+.card {
+  display: flex;
+  align-items: center;
+  gap: calc(2.2 * var(--u));
+  min-height: calc(9.6 * var(--u));
+  padding: calc(1.3 * var(--u)) calc(2 * var(--u)) calc(1.3 * var(--u)) calc(3.7 * var(--u));
+  border-radius: calc(1.9 * var(--u));
+  background: var(--card);
+}
+
+.card__text {
+  flex: 1;
+  font-size: max(11px, calc(2.27 * var(--u))); /* the only text with a readability floor */
+  font-weight: 400;
+  line-height: max(calc(3.03 * var(--u)), 14.3px);
+  color: var(--ink);
+}
+
+.card__icon {
+  flex: 0 0 auto;
+  width: max(34px, calc(9.8 * var(--u)));
+  height: max(34px, calc(9.8 * var(--u)));
+  border-radius: 50%;
+  background: center / cover;
+}
+
+.card__icon--flag   { background-image: url(../images/icon-flag.png); }
+.card__icon--map    { background-image: url(../images/icon-map.png); }
+.card__icon--shield { background-image: url(../images/icon-shield.png); }
+.card__icon--people { background-image: url(../images/icon-people.png); }
+.card__icon--gear   { background-image: url(../images/icon-gear.png); }
+
+/* ---- Footer artwork + join button ---------------------------------------- */
+
+.footer-art {
+  position: relative;
+  margin-top: calc(-0.2 * var(--u));
+  aspect-ratio: 1024 / 441;
+  background: url(../images/background-bottom.jpg) bottom / 100% 100% no-repeat;
+}
+
+.join-btn {
+  position: absolute;
+  top: calc(1.2 * var(--u));
+  left: 50%;
+  translate: -50% 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: calc(2.8 * var(--u));
+  width: calc(56.2 * var(--u));
+  height: max(calc(8.1 * var(--u)), 38px); /* comfortable tap target on phones */
+  border: calc(0.3 * var(--u)) solid #fff;
+  border-radius: calc(1.9 * var(--u));
+  background: var(--navy);
+  box-shadow: 0 calc(0.4 * var(--u)) calc(1.2 * var(--u)) rgba(1, 32, 69, 0.3);
+  color: #fff;
+  font: 900 max(12px, calc(3.1 * var(--u))) / 1 var(--font);
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background-color 0.15s, translate 0.15s, scale 0.1s, box-shadow 0.15s;
+}
+
+.join-btn svg {
+  flex: 0 0 auto;
+  width: calc(3.6 * var(--u));
+  height: calc(3.6 * var(--u));
+  min-width: 14px;
+  min-height: 14px;
+}
+
+.join-btn .join-btn__chevron {
+  width: calc(1.9 * var(--u));
+  height: calc(1.9 * var(--u));
+  min-width: 8px;
+  min-height: 8px;
+}
+
+/* Hover (mouse only, so touch screens do not get a "stuck" hover): lighter + lifted */
+@media (hover: hover) {
+  .join-btn:hover {
+    translate: -50% calc(-0.3 * var(--u));
+    background: var(--navy-hover);
+    box-shadow: 0 calc(0.8 * var(--u)) calc(1.6 * var(--u)) rgba(1, 32, 69, 0.35);
+  }
+}
+
+/* Pressed (touch and mouse): pushed down and a little darker */
+.join-btn:active {
+  translate: -50% 0;
+  scale: 0.97;
+  background: var(--navy-pressed);
+  box-shadow: 0 calc(0.2 * var(--u)) calc(0.6 * var(--u)) rgba(1, 32, 69, 0.3);
+}
+
+/* Keyboard focus ring */
+.join-btn:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .join-btn { transition: background-color 0.15s; }
+  .join-btn:hover,
+  .join-btn:active { translate: -50% 0; scale: 1; }
+}

@@ -1,0 +1,26 @@
+/* ==========================================================================
+   TITLE OPTION 2 - Guttman Stam   (DO NOT DELETE / לא למחוק!)
+
+   One complete font (letters + niqqud + cantillation), with generic mark
+   positioning added by tools/build_font.py.  Font: fonts/GuttmanStam.woff
+
+   To use this option, link this file in index.html instead of
+   css/title-option-1.css.  Both options are fully independent.
+   ========================================================================== */
+
+@font-face {
+  font-family: 'Guttman Stam';
+  src: url(../fonts/GuttmanStam.woff) format('woff');
+  font-display: swap;
+}
+
+.verse {
+  top: calc(2 * var(--u));
+  font-family: 'Guttman Stam', serif;
+}
+
+.wordmark {
+  padding-top: calc(4.6 * var(--u));
+  font-family: 'Guttman Stam', serif;
+  font-size: calc(14.6 * var(--u));
+}

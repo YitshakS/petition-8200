@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>אחותי את – עצומה</title>
+  <meta name="description" content="עצומה להקמת מסגרת הסדר תורנית לשירות בנות דתיות ציוניות ביחידת המודיעין 8200">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;800;900&display=swap">
+
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/join-form.css">
+
+  <!--
+    Title typography - link exactly ONE of the two options (both are kept; DO NOT DELETE either file):
+      option 1: Stam Ashkenaz   -> css/title-option-1.css
+      option 2: Guttman Stam    -> css/title-option-2.css
+  -->
+  <link rel="stylesheet" href="css/title-option-2.css">
+  <!-- <link rel="stylesheet" href="css/title-option-1.css"> -->
+
+  <script src="js/main.js" defer></script>
+</head>
+<body>
+  <main class="page">
+    <div class="blessing">ב"ה</div>
+
+    <header class="masthead">
+      <div class="verse">אֱמֹ֣ר לַ֭חׇכְמָה</div>
+      <div class="wordmark" role="img" aria-label="אחותי את">אֲחֹ֣תִי אָ֑תְּ</div>
+    </header>
+
+    <h1 class="headline">
+      <span class="headline__line headline__line--lead">עצומה</span>
+      <span class="headline__line">להקמת מסגרת הסדר תורנית</span>
+      <span class="headline__line headline__line--detail">לשירות בנות דתיות ציוניות ביחידת המודיעין 8200</span>
+    </h1>
+
+    <section class="cards">
+      <article class="card">
+        <div class="card__icon card__icon--flag"></div>
+        <p class="card__text">אנו, בנות דתיות ציוניות, מתוך אמונה ושליחות כלפי עם ישראל, ארץ ישראל ותורת ישראל, מבקשות להקים מסגרת מתאימה, שתאפשר לנו שירות קבוצתי, בצבא ההגנה לישראל, ביחידת המודיעין 8200.</p>
+      </article>
+      <article class="card">
+        <div class="card__icon card__icon--map"></div>
+        <p class="card__text">בעקבות הטבח בשבת שמחת תורה, בשביעי באוקטובר, מלחמה שלא תמה עד היום, חשות אנו חובה מוסרית וערכית, להיקרא אל הדגל, ולתרום את חלקנו, כמאמר המשנה על מלחמת מצוה/חובה "הכל יוצאין, אפילו חתן מחדרו וכלה מחופתה".</p>
+      </article>
+      <article class="card">
+        <div class="card__icon card__icon--shield"></div>
+        <p class="card__text">חובה זו מתחדדת, בעקבות סירוב פקודה המוני לשירות צבאי, שנבע מתוך מניעים פוליטיים ועודד את אויבינו לפתוח במסע הטבח, וכן בעקבות עדויותיהם לכאורה של בוגרי 8200 בסרט שקרי שהוציא את דיבתם של מדינת ישראל וצה"ל.</p>
+      </article>
+      <article class="card">
+        <div class="card__icon card__icon--people"></div>
+        <p class="card__text">כידוע, לגבי שירות קבוצתי, לבנים דתיים ציוניים יש את איגוד ישיבות ההסדר, ובפרט לשירות ביחידת 8200 לבנים החרדים יש את "קודקוד" ולבנות החרדיות יש את "הדסים". לנו, בנות דתיות ציוניות, עד היום טרם הוקמה מסגרת כזו.</p>
+      </article>
+      <article class="card">
+        <div class="card__icon card__icon--gear"></div>
+        <p class="card__text">כאמור, אנו, בנות דתיות ציוניות החתומות מטה, מבקשות להקים מסגרת כזו, שתאפשר לנו שירות קבוצתי, בצה"ל, ביחידת המודיעין 8200.</p>
+      </article>
+    </section>
+
+    <div class="footer-art">
+      <button type="button" class="join-btn" id="join">
+        <svg class="join-btn__chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 4l8 8-8 8"/></svg>
+        <span>אני מצטרפת לעצומה</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20l1-4L17 4l3 3L8 19z"/><path d="M14.5 6.5l3 3"/></svg>
+      </button>
+    </div>
+  </main>
+
+  <dialog class="join-dialog" id="join-dialog" aria-labelledby="join-title">
+    <form class="join-form" id="join-form" novalidate>
+      <button type="button" class="join-form__close" data-close aria-label="סגירה">&times;</button>
+
+      <h2 class="join-form__title" id="join-title">חתימה על העצומה</h2>
+      <p class="join-form__audience">העצומה מיועדת לבנות המעוניינות לשרת במסגרת זו. פרטי הטופס ישמשו להקמת המסגרת בלבד.</p>
+      <p class="join-form__note">שדות המסומנים ב-* הם חובה.</p>
+
+      <div class="form-row">
+        <div class="field">
+          <label for="first-name">שם פרטי *</label>
+          <input id="first-name" name="firstName" type="text" autocomplete="given-name" required>
+          <p class="field__error" data-error-for="firstName" role="alert"></p>
+        </div>
+
+        <div class="field">
+          <label for="last-name">שם משפחה *</label>
+          <input id="last-name" name="lastName" type="text" autocomplete="family-name" required>
+          <p class="field__error" data-error-for="lastName" role="alert"></p>
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="mobile">טלפון נייד *</label>
+        <input id="mobile" name="mobile" type="tel" inputmode="tel" autocomplete="tel" dir="ltr" placeholder="05X-XXXXXXX" required>
+        <p class="field__error" data-error-for="mobile" role="alert"></p>
+      </div>
+
+      <div class="field">
+        <label for="email">דוא"ל *</label>
+        <input id="email" name="email" type="email" inputmode="email" autocomplete="email" dir="ltr" required>
+        <p class="field__error" data-error-for="email" role="alert"></p>
+      </div>
+
+      <div class="form-row form-row--age">
+        <div class="field">
+          <label for="age">גיל *</label>
+          <input id="age" name="age" type="number" inputmode="numeric" min="10" max="99" required>
+          <p class="field__error" data-error-for="age" role="alert"></p>
+        </div>
+
+        <div class="field">
+          <label for="ulpana">אולפנה</label>
+          <input id="ulpana" name="ulpana" type="text" autocomplete="organization">
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="notes">הערות נוספות</label>
+        <textarea id="notes" name="notes" rows="2"></textarea>
+      </div>
+
+      <div class="field">
+        <label class="check">
+          <input type="checkbox" name="interested">
+          <span>אני מעוניינת (ללא התחייבות) להתגייס למסגרת זו ולשרת בה, ומאשרת שיעדכנו אותי בשלבי הקמתה *</span>
+        </label>
+        <p class="field__error" data-error-for="interested" role="alert"></p>
+      </div>
+
+      <label class="check">
+        <input type="checkbox" name="publishName">
+        <span>אני מסכימה ששמי המלא (ללא פרטים נוספים) יופיע ברשימת החותמות באם העצומה תפורסם</span>
+      </label>
+
+      <!-- Spam trap: hidden from people, bots tend to fill it in -->
+      <div class="join-form__trap" aria-hidden="true">
+        <label>אל תמלאי שדה זה <input type="text" name="website" tabindex="-1" autocomplete="off"></label>
+      </div>
+
+      <div class="join-form__actions">
+        <p class="join-form__status" id="join-status" role="alert"></p>
+        <button type="submit" class="join-form__submit">שליחה</button>
+      </div>
+    </form>
+
+    <div class="join-thanks" id="join-thanks" hidden>
+      <h2 class="join-form__title">תודה שחתמת!</h2>
+      <button type="button" class="join-form__submit" data-close>סגירה</button>
+    </div>
+  </dialog>
+</body>
+</html>

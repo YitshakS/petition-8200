@@ -1,0 +1,27 @@
+/* ==========================================================================
+   TITLE OPTION 1 - Stam Ashkenaz   (DO NOT DELETE / לא למחוק!)
+
+   Letters: Stam Ashkenaz CLM.  Niqqud/cantillation: Noto Serif Hebrew, placed
+   by the generic rules of tools/build_font.py.  The lamed and the qamats are
+   taken from Guttman Stam (straight lamed).  Font: fonts/StamAshkenazFull.woff
+
+   To use this option, link this file in index.html instead of
+   css/title-option-2.css.  Both options are fully independent.
+   ========================================================================== */
+
+@font-face {
+  font-family: 'Stam Ashkenaz Full';
+  src: url(../fonts/StamAshkenazFull.woff) format('woff');
+  font-display: swap;
+}
+
+.verse {
+  top: calc(1.3 * var(--u));
+  font-family: 'Stam Ashkenaz Full', serif;
+}
+
+.wordmark {
+  padding-top: calc(2.2 * var(--u));
+  font-family: 'Stam Ashkenaz Full', serif;
+  font-size: calc(17 * var(--u));
+}

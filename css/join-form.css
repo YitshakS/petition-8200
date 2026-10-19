@@ -1,0 +1,209 @@
+/* ==========================================================================
+   Join dialog (the signature form that opens from the "join" button).
+   Sizes here are in px/rem on purpose: form text must stay comfortably
+   readable (inputs use 16px so iOS does not zoom in on focus).
+   ========================================================================== */
+
+.join-dialog {
+  --form-pad-x: 20px;
+  --form-pad-bottom: 24px;
+
+  width: min(92vw, 460px);
+  max-height: 92dvh;
+  margin: auto; /* base.css resets all margins; the dialog needs auto to be centred */
+  padding: 0;
+  border: 0;
+  border-radius: 18px;
+  background: #fff;
+  color: var(--ink);
+  box-shadow: 0 18px 50px rgba(1, 32, 69, 0.35);
+  overflow: auto;
+}
+
+.join-dialog::backdrop {
+  background: rgba(1, 32, 69, 0.6);
+}
+
+.join-dialog[open] { animation: join-dialog-in 0.2s ease-out; }
+
+@keyframes join-dialog-in {
+  from { opacity: 0; translate: 0 12px; }
+  to   { opacity: 1; translate: 0 0; }
+}
+
+/* Phones: the dialog is a sheet that slides up from the bottom */
+@media (max-width: 600px) {
+  .join-dialog {
+    width: 100%;
+    max-width: none;
+    margin: auto 0 0;
+    border-radius: 18px 18px 0 0;
+  }
+}
+
+.join-form,
+.join-thanks {
+  position: relative;
+  padding: 22px var(--form-pad-x) var(--form-pad-bottom);
+}
+
+.join-form__close {
+  position: absolute;
+  top: 8px;
+  left: 10px;
+  width: 40px;
+  height: 40px;
+  border: 0;
+  background: none;
+  color: var(--navy);
+  font-size: 30px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.join-form__title {
+  margin-bottom: 4px;
+  color: var(--navy);
+  font-size: 1.5rem;
+  font-weight: 900;
+}
+
+/* Who may sign: highlighted so that people who are not the target audience notice it */
+.join-form__audience {
+  margin-bottom: 8px;
+  padding: 8px 10px;
+  border-inline-start: 4px solid var(--accent);
+  border-radius: 8px;
+  background: var(--accent-soft);
+  color: var(--navy);
+  font-size: 1rem;
+  font-weight: 800;
+}
+
+.join-form__note {
+  margin-bottom: 14px;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+/* ---- Fields ---------------------------------------------------------------- */
+
+.field { margin-bottom: 12px; }
+
+/* two fields side by side */
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0 10px;
+}
+
+.form-row--age { grid-template-columns: 96px 1fr; }
+
+.field label,
+.check {
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+.field label:not(.check) { display: block; margin-bottom: 4px; }
+
+.field input,
+.field textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1.5px solid var(--border);
+  border-radius: 10px;
+  background: #fff;
+  color: var(--ink);
+  font: inherit;
+  font-size: 16px; /* >=16px: no zoom on iOS */
+}
+
+.field textarea { resize: vertical; min-height: 64px; }
+
+.field input:focus-visible,
+.field textarea:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 1px;
+  border-color: var(--navy);
+}
+
+.field[data-invalid] input { border-color: var(--error); }
+
+.field__error {
+  margin-top: 3px;
+  color: var(--error);
+  font-size: 0.85rem;
+}
+
+.check {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  margin: 6px 0 12px;
+  cursor: pointer;
+}
+
+.check input {
+  flex: 0 0 auto;
+  width: 20px;
+  height: 20px;
+  margin-top: 2px;
+  accent-color: var(--navy);
+}
+
+/* ---- Spam trap: out of sight and out of the layout flow ---------------------- */
+
+.join-form__trap {
+  position: absolute;
+  inset-inline-start: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+/* ---- Submit / status --------------------------------------------------------- */
+
+/* always visible at the bottom of the dialog, even when the form scrolls */
+.join-form__actions {
+  position: sticky;
+  bottom: 0;
+  margin: 0 calc(-1 * var(--form-pad-x)) calc(-1 * var(--form-pad-bottom));
+  padding: 6px var(--form-pad-x) 14px;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0), #fff 12px);
+}
+
+.join-form__status {
+  color: var(--error);
+  font-size: 0.9rem;
+}
+
+/* takes no room until there is a message to show */
+.join-form__status:not(:empty) { margin-bottom: 6px; }
+
+.join-form__submit {
+  display: block;
+  width: 100%;
+  padding: 13px;
+  border: 0;
+  border-radius: 12px;
+  background: var(--navy);
+  color: #fff;
+  font: 900 1.1rem var(--font);
+  cursor: pointer;
+  transition: background-color 0.15s;
+}
+
+.join-form__submit:hover { background: var(--navy-hover); }
+.join-form__submit:active { background: var(--navy-pressed); }
+.join-form__submit:disabled { opacity: 0.6; cursor: wait; }
+
+.join-form__submit:focus-visible,
+.join-form__close:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .join-dialog[open] { animation: none; }
+}
