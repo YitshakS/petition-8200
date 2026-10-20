@@ -23,6 +23,7 @@
   --border: #c3cfe0;
   --muted: #55637d;
   --font: 'Heebo', system-ui, 'Segoe UI', Arial, sans-serif;
+  --text-growth: 0.006; /* portrait phones: share of the spare height that the card text size may use */
 
   /* 1u = 1% of the page width.  The page is 100u wide and ~154u tall. */
   --u: min(1vw, 10.24px, calc(100vh / 156));
@@ -225,4 +226,45 @@ body {
   .join-btn { transition: background-color 0.15s; }
   .join-btn:hover,
   .join-btn:active { translate: -50% 0; scale: 1; }
+}
+
+/* ---- Tall, narrow screens (portrait phones) ------------------------------------
+   The page keeps its proportions and is only as wide as the screen, which leaves
+   spare height.  That height goes to the cards: they grow taller and their text
+   grows a little.  (16/25 = the aspect ratio below which the width is the limit.) */
+
+@media (max-aspect-ratio: 16/25) {
+  .page {
+    --spare: max(0px, calc(100vh - 156 * var(--u))); /* height not used by the page */
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+
+  .masthead,
+  .headline,
+  .footer-art { flex: none; }
+
+  .cards,
+  .card { flex: 1; }
+
+  .card__text {
+    --text: calc(max(11px, 2.27 * var(--u)) + var(--text-growth) * var(--spare));
+    font-size: var(--text);
+    line-height: calc(1.335 * var(--text));
+  }
+}
+
+/* short phones have almost no spare height: keep the text size as it is */
+@media (max-aspect-ratio: 16/25) and (max-height: 735px) {
+  .page { --text-growth: 0; }
+}
+
+@supports (height: 100dvh) {
+  @media (max-aspect-ratio: 16/25) {
+    .page {
+      --spare: max(0px, calc(100dvh - 156 * var(--u)));
+      min-height: 100dvh;
+    }
+  }
 }
