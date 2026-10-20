@@ -268,3 +268,11 @@ body {
     }
   }
 }
+
+/* ---- Short, wide screens (phones held sideways) ---------------------------------
+   Fitting the whole page into such a short screen would make a narrow column with
+   tiny text.  Use the full width instead; the page simply scrolls. */
+
+@media (max-height: 500px) {
+  :root { --u: min(1vw, 10.24px); }
+}
