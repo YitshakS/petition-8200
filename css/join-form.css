@@ -31,16 +31,6 @@
   to   { opacity: 1; translate: 0 0; }
 }
 
-/* Phones: the dialog is a sheet that slides up from the bottom */
-@media (max-width: 600px) {
-  .join-dialog {
-    width: 100%;
-    max-width: none;
-    margin: auto 0 0;
-    border-radius: 18px 18px 0 0;
-  }
-}
-
 .join-form,
 .join-thanks {
   position: relative;
