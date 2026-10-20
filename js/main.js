@@ -56,15 +56,25 @@ function clearErrors() {
   for (const name of Object.keys(validators)) showError(name, '');
 }
 
+const fieldLabels = {
+  firstName: 'שם פרטי',
+  lastName: 'שם משפחה',
+  mobile: 'טלפון נייד',
+  email: 'דוא"ל',
+  age: 'גיל',
+  interested: 'אישור ההצטרפות',
+};
+
 function validate() {
-  let firstInvalid = null;
+  const invalid = [];
   for (const [name, check] of Object.entries(validators)) {
     const message = check(form.elements[name].value, form.elements[name]);
     showError(name, message);
-    if (message && !firstInvalid) firstInvalid = form.elements[name];
+    if (message) invalid.push(fieldLabels[name]);
   }
-  firstInvalid?.focus();
-  return !firstInvalid;
+  // the form may be taller than the screen: name the fields next to the button
+  if (invalid.length) statusLine.textContent = `יש למלא או לתקן: ${invalid.join(', ')}`;
+  return !invalid.length;
 }
 
 // clear an error as soon as the field becomes valid
