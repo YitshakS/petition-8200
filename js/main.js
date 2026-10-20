@@ -37,10 +37,17 @@ dialog.addEventListener('click', (event) => {
 
 const digitsOnly = (value) => value.replace(/\D/g, '');
 
+// Israeli mobile in the local form: dashes, spaces and the country code (+972 / 00972) are accepted
+// and removed, e.g. "+972 50-123-4567" becomes "0501234567".
+function normalizeMobile(value) {
+  const digits = digitsOnly(value).replace(/^(00)?972/, '');
+  return digits.startsWith('0') || digits === '' ? digits : `0${digits}`;
+}
+
 const validators = {
   firstName: (v) => (v.trim() ? '' : 'נא למלא שם פרטי'),
   lastName: (v) => (v.trim() ? '' : 'נא למלא שם משפחה'),
-  mobile: (v) => (/^05\d{8}$/.test(digitsOnly(v)) ? '' : 'נא להזין מספר נייד תקין, למשל 0501234567'),
+  mobile: (v) => (/^05\d{8}$/.test(normalizeMobile(v)) ? '' :'נא להזין מספר נייד תקין, למשל 0501234567'),
   email: (v) => (/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.trim()) ? '' : 'נא להזין כתובת דוא"ל תקינה'),
   age: (v) => (Number.isInteger(+v) && +v >= 10 && +v <= 99 ? '' : 'נא להזין גיל תקין'),
   interested: (v, el) => (el.checked ? '' : 'שדה חובה'),
@@ -83,6 +90,13 @@ form.addEventListener('input', (event) => {
   if (validators[name]) showError(name, validators[name](event.target.value, event.target));
 });
 
+// show the cleaned-up number when leaving the field (not while typing, which would move the cursor)
+form.elements.mobile.addEventListener('blur', (event) => {
+  const field = event.target;
+  const cleaned = normalizeMobile(field.value);
+  if (cleaned) field.value = cleaned;
+});
+
 // ---- Submit ------------------------------------------------------------------
 
 function readForm() {
@@ -90,7 +104,7 @@ function readForm() {
   return {
     firstName: data.get('firstName').trim(),
     lastName: data.get('lastName').trim(),
-    mobile: digitsOnly(data.get('mobile')),
+    mobile: normalizeMobile(data.get('mobile')),
     email: data.get('email').trim(),
     age: Number(data.get('age')),
     ulpana: data.get('ulpana').trim(),
