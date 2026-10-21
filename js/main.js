@@ -8,6 +8,14 @@ const SIGNATURE_ENDPOINT = null;
 // Bots that fill the form in under this many milliseconds are ignored.
 const MIN_FILL_TIME_MS = 3000;
 
+// What the person sees when sending fails.  The server answers { ok: false, error: <key> }
+// with one of the keys below; anything else (no connection, a crash) uses `general`.
+const SEND_ERRORS = {
+  busy: 'קיים עומס חריג. בעוד מספר דקות, נסי לשלוח שוב',
+  verification: 'האימות נכשל. נסי לשלוח שוב',
+  general: 'אירעה שגיאה בשליחה. וודאי שהאינטרנט מחובר ונסי לשלוח שוב',
+};
+
 const dialog = document.getElementById('join-dialog');
 const form = document.getElementById('join-form');
 const thanks = document.getElementById('join-thanks');
@@ -47,12 +55,12 @@ function normalizeMobile(value) {
 const THIS_YEAR = new Date().getFullYear();
 
 const validators = {
-  firstName: (v) => (v.trim() ? '' : 'נא להזין שם פרטי'),
-  lastName: (v) => (v.trim() ? '' : 'נא להזין שם משפחה'),
-  mobile: (v) => (/^05\d{8}$/.test(normalizeMobile(v)) ? '' : 'נא להזין מספר תקין'),
-  email: (v) => (/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.trim()) ? '' : 'נא להזין דוא"ל תקין'),
-  birthYear: (v) => (/^\d{4}$/.test(v.trim()) && +v >= 1900 && +v <= THIS_YEAR ? '' : 'נא להזין שנה תקינה'),
-  interested: (v, el) => (el.checked ? '' : 'נא לסמן תיבה זו. העצומה מיועדת לבנות המעוניינות לשרת במסגרת זו'),
+  firstName: (v) => (v.trim() ? '' : 'הזיני שם פרטי'),
+  lastName: (v) => (v.trim() ? '' : 'הזיני שם משפחה'),
+  mobile: (v) => (/^05\d{8}$/.test(normalizeMobile(v)) ? '' : 'הזיני מספר תקין'),
+  email: (v) => (/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.trim()) ? '' : 'הזיני דוא"ל תקין'),
+  birthYear: (v) => (/^\d{4}$/.test(v.trim()) && +v >= 1900 && +v <= THIS_YEAR ? '' : 'הזיני שנה תקינה'),
+  interested: (v, el) => (el.checked ? '' : 'סמני תיבה זו. העצומה מיועדת לבנות המעוניינות לשרת במסגרת זו'),
 };
 
 function showError(name, message) {
@@ -82,7 +90,7 @@ function validate() {
     if (message) invalid.push(fieldLabels[name]);
   }
   // the form may be taller than the screen: name the fields next to the button
-  if (invalid.length) statusLine.textContent = `נא להזין או לתקן:\n${invalid.join(', ')}`;
+  if (invalid.length) statusLine.textContent = `הזיני או תקני:\n${invalid.join(', ')}`;
   return !invalid.length;
 }
 
@@ -128,6 +136,8 @@ async function submitSignature(signature) {
     body: JSON.stringify(signature),
   });
   if (!response.ok) throw new Error(`Server answered ${response.status}`);
+  const result = await response.json();
+  if (!result.ok) throw Object.assign(new Error(`Server refused: ${result.error}`), { key: result.error });
 }
 
 function showThanks() {
@@ -156,7 +166,7 @@ form.addEventListener('submit', async (event) => {
     showThanks();
   } catch (error) {
     console.error(error);
-    statusLine.textContent = 'אירעה שגיאה בשליחה. נסי שוב בעוד רגע.';
+    statusLine.textContent = SEND_ERRORS[error.key] ?? SEND_ERRORS.general;
   } finally {
     submitButton.disabled = false;
   }
