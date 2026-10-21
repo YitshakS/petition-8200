@@ -116,7 +116,7 @@
 /* the first field of these rows has a known length: it gets just enough room, the second field
    gets the rest.  Both rows use the same width so that the columns line up. */
 .form-row--year,
-.form-row--contact { grid-template-columns: 132px 1fr; }
+.form-row--contact { grid-template-columns: 120px 1fr; }
 
 .field label,
 .check {
