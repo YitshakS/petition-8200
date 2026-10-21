@@ -113,9 +113,9 @@
   gap: 0 10px;
 }
 
-.form-row--year { grid-template-columns: 124px 1fr; }
-
-/* a mobile number has a known length: it gets just enough room, the e-mail gets the rest */
+/* the first field of these rows has a known length: it gets just enough room, the second field
+   gets the rest.  Both rows use the same width so that the columns line up. */
+.form-row--year,
 .form-row--contact { grid-template-columns: 132px 1fr; }
 
 .field label,
