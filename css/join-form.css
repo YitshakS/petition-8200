@@ -118,6 +118,14 @@
 
 .field label:not(.check) { display: block; margin-bottom: 4px; }
 
+/* smaller explanation on its own line under the label */
+.field__hint {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 400;
+  color: var(--muted);
+}
+
 .field input,
 .field textarea {
   width: 100%;

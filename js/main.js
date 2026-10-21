@@ -107,6 +107,7 @@ function readForm() {
     mobile: normalizeMobile(data.get('mobile')),
     email: data.get('email').trim(),
     age: Number(data.get('age')),
+    city: data.get('city').trim(),
     ulpana: data.get('ulpana').trim(),
     notes: data.get('notes').trim(),
     interested: data.get('interested') === 'on', // also consent to be notified
