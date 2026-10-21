@@ -108,7 +108,10 @@
   gap: 0 10px;
 }
 
-.form-row--age { grid-template-columns: 96px 1fr; }
+.form-row--year { grid-template-columns: 96px 1fr; }
+
+/* a mobile number has a known length: it gets just enough room, the e-mail gets the rest */
+.form-row--contact { grid-template-columns: 132px 1fr; }
 
 .field label,
 .check {

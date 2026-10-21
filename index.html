@@ -92,23 +92,25 @@
         </div>
       </div>
 
-      <div class="field">
-        <label for="mobile">טלפון נייד *</label>
-        <input id="mobile" name="mobile" type="tel" inputmode="tel" autocomplete="tel" dir="ltr" placeholder="05X-XXXXXXX" required>
-        <p class="field__error" data-error-for="mobile" role="alert"></p>
-      </div>
-
-      <div class="field">
-        <label for="email">דוא"ל *</label>
-        <input id="email" name="email" type="email" inputmode="email" autocomplete="email" dir="ltr" required>
-        <p class="field__error" data-error-for="email" role="alert"></p>
-      </div>
-
-      <div class="form-row form-row--age">
+      <div class="form-row form-row--contact">
         <div class="field">
-          <label for="age">גיל *</label>
-          <input id="age" name="age" type="number" inputmode="numeric" min="10" max="99" required>
-          <p class="field__error" data-error-for="age" role="alert"></p>
+          <label for="mobile">טלפון נייד *</label>
+          <input id="mobile" name="mobile" type="tel" inputmode="tel" autocomplete="tel" dir="ltr" placeholder="05X-XXXXXXX" required>
+          <p class="field__error" data-error-for="mobile" role="alert"></p>
+        </div>
+
+        <div class="field">
+          <label for="email">דוא"ל *</label>
+          <input id="email" name="email" type="email" inputmode="email" autocomplete="email" dir="ltr" required>
+          <p class="field__error" data-error-for="email" role="alert"></p>
+        </div>
+      </div>
+
+      <div class="form-row form-row--year">
+        <div class="field">
+          <label for="birth-year">שנת לידה *</label>
+          <input id="birth-year" name="birthYear" type="text" inputmode="numeric" maxlength="4" autocomplete="bday-year" required>
+          <p class="field__error" data-error-for="birthYear" role="alert"></p>
         </div>
 
         <div class="field">

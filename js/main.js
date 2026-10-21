@@ -44,12 +44,14 @@ function normalizeMobile(value) {
   return digits.startsWith('0') || digits === '' ? digits : `0${digits}`;
 }
 
+const THIS_YEAR = new Date().getFullYear();
+
 const validators = {
   firstName: (v) => (v.trim() ? '' : 'נא למלא שם פרטי'),
   lastName: (v) => (v.trim() ? '' : 'נא למלא שם משפחה'),
   mobile: (v) => (/^05\d{8}$/.test(normalizeMobile(v)) ? '' :'נא להזין מספר נייד תקין, למשל 0501234567'),
   email: (v) => (/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.trim()) ? '' : 'נא להזין כתובת דוא"ל תקינה'),
-  age: (v) => (Number.isInteger(+v) && +v >= 10 && +v <= 99 ? '' : 'נא להזין גיל תקין'),
+  birthYear: (v) => (/^\d{4}$/.test(v.trim()) && +v >= 1900 && +v <= THIS_YEAR ? '' : 'נא להזין שנת לידה תקינה, למשל 2008'),
   interested: (v, el) => (el.checked ? '' : 'שדה חובה'),
 };
 
@@ -68,7 +70,7 @@ const fieldLabels = {
   lastName: 'שם משפחה',
   mobile: 'טלפון נייד',
   email: 'דוא"ל',
-  age: 'גיל',
+  birthYear: 'שנת לידה',
   interested: 'אישור ההצטרפות',
 };
 
@@ -106,7 +108,7 @@ function readForm() {
     lastName: data.get('lastName').trim(),
     mobile: normalizeMobile(data.get('mobile')),
     email: data.get('email').trim(),
-    age: Number(data.get('age')),
+    birthYear: Number(data.get('birthYear')),
     city: data.get('city').trim(),
     ulpana: data.get('ulpana').trim(),
     notes: data.get('notes').trim(),
