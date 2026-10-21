@@ -58,6 +58,11 @@
   .join-form { scrollbar-color: #8fb0dc var(--accent-soft); }
 }
 
+.join-thanks__text {
+  margin-bottom: 16px;
+  font-size: 1rem;
+}
+
 .join-form__close {
   position: absolute;
   top: 8px;
@@ -108,7 +113,7 @@
   gap: 0 10px;
 }
 
-.form-row--year { grid-template-columns: 96px 1fr; }
+.form-row--year { grid-template-columns: 124px 1fr; }
 
 /* a mobile number has a known length: it gets just enough room, the e-mail gets the rest */
 .form-row--contact { grid-template-columns: 132px 1fr; }
@@ -190,6 +195,7 @@
   color: var(--error);
   font-size: 0.9rem;
   font-weight: 500;
+  white-space: pre-line; /* the message may contain a line break */
 }
 
 /* takes no room until there is a message to show */

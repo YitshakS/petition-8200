@@ -47,12 +47,12 @@ function normalizeMobile(value) {
 const THIS_YEAR = new Date().getFullYear();
 
 const validators = {
-  firstName: (v) => (v.trim() ? '' : 'נא למלא שם פרטי'),
-  lastName: (v) => (v.trim() ? '' : 'נא למלא שם משפחה'),
-  mobile: (v) => (/^05\d{8}$/.test(normalizeMobile(v)) ? '' :'נא להזין מספר נייד תקין, למשל 0501234567'),
-  email: (v) => (/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.trim()) ? '' : 'נא להזין כתובת דוא"ל תקינה'),
-  birthYear: (v) => (/^\d{4}$/.test(v.trim()) && +v >= 1900 && +v <= THIS_YEAR ? '' : 'נא להזין שנת לידה תקינה, למשל 2008'),
-  interested: (v, el) => (el.checked ? '' : 'שדה חובה'),
+  firstName: (v) => (v.trim() ? '' : 'נא להזין שם פרטי'),
+  lastName: (v) => (v.trim() ? '' : 'נא להזין שם משפחה'),
+  mobile: (v) => (/^05\d{8}$/.test(normalizeMobile(v)) ? '' : 'נא להזין מספר תקין'),
+  email: (v) => (/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.trim()) ? '' : 'נא להזין דוא"ל תקין'),
+  birthYear: (v) => (/^\d{4}$/.test(v.trim()) && +v >= 1900 && +v <= THIS_YEAR ? '' : 'נא להזין שנה תקינה'),
+  interested: (v, el) => (el.checked ? '' : 'נא לסמן תיבה זו. העצומה מיועדת לבנות המעוניינות לשרת במסגרת זו'),
 };
 
 function showError(name, message) {
@@ -68,7 +68,7 @@ function clearErrors() {
 const fieldLabels = {
   firstName: 'שם פרטי',
   lastName: 'שם משפחה',
-  mobile: 'טלפון נייד',
+  mobile: 'מספר טלפון נייד',
   email: 'דוא"ל',
   birthYear: 'שנת לידה',
   interested: 'אישור ההצטרפות',
@@ -82,7 +82,7 @@ function validate() {
     if (message) invalid.push(fieldLabels[name]);
   }
   // the form may be taller than the screen: name the fields next to the button
-  if (invalid.length) statusLine.textContent = `יש למלא או לתקן: ${invalid.join(', ')}`;
+  if (invalid.length) statusLine.textContent = `נא להזין או לתקן:\n${invalid.join(', ')}`;
   return !invalid.length;
 }
 
