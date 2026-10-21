@@ -1,9 +1,10 @@
 // Join dialog: opens from the "join" button, validates the form, filters spam,
 // and hands the data to submitSignature().
 
-// TODO: set this to the real endpoint once the server exists.
-// While it is null NOTHING is sent anywhere: the data is only logged to the console.
-const SIGNATURE_ENDPOINT = null;
+// The Google Apps Script web app that saves each signature as a row in a private Google Sheet.
+// While this is null NOTHING is sent anywhere: the data is only logged to the console.
+const SIGNATURE_ENDPOINT =
+  'https://script.google.com/macros/s/AKfycbyNS1vK58zWhdhVvyzswaSwU7KNsE95HA-MpbjQpFzmbYYZu5l2E8vL9XBXMtnlnDnFNQ/exec';
 
 // Bots that fill the form in under this many milliseconds are ignored.
 const MIN_FILL_TIME_MS = 3000;
@@ -132,7 +133,8 @@ async function submitSignature(signature) {
   }
   const response = await fetch(SIGNATURE_ENDPOINT, {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
+    // text/plain (the body is still JSON): Apps Script does not answer a CORS preflight request
+    headers: { 'Content-Type': 'text/plain;charset=utf-8' },
     body: JSON.stringify(signature),
   });
   if (!response.ok) throw new Error(`Server answered ${response.status}`);
