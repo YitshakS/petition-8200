@@ -281,6 +281,28 @@
 .join-form__submit:active { background: var(--navy-pressed); }
 .join-form__submit:disabled { opacity: 0.6; cursor: wait; }
 
+/* sending: a spinner before the text */
+.join-form__submit.is-sending {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.join-form__submit.is-sending:disabled { opacity: 0.85; }
+
+.join-form__submit.is-sending::before {
+  content: '';
+  width: 18px;
+  height: 18px;
+  border: 3px solid rgba(255, 255, 255, 0.35);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: join-spin 0.8s linear infinite;
+}
+
+@keyframes join-spin { to { rotate: 360deg; } }
+
 /* the quiet version (the "close" button of the thank-you screen) */
 .join-form__submit--quiet {
   padding: 11px 6px;
@@ -300,4 +322,5 @@
 
 @media (prefers-reduced-motion: reduce) {
   .join-dialog[open] { animation: none; }
+  .join-form__submit.is-sending::before { animation-duration: 2.4s; } /* a calm spinner */
 }

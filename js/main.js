@@ -189,7 +189,11 @@ form.addEventListener('submit', async (event) => {
     return;
   }
 
+  // while the signature travels to the sheet (a second or two): a spinner and "בשליחה..."
+  const buttonText = submitButton.textContent;
   submitButton.disabled = true;
+  submitButton.classList.add('is-sending');
+  submitButton.textContent = 'בשליחה...';
   try {
     await submitSignature(readForm());
     showThanks();
@@ -198,5 +202,7 @@ form.addEventListener('submit', async (event) => {
     statusLine.textContent = SEND_ERRORS[error.key] ?? SEND_ERRORS.general;
   } finally {
     submitButton.disabled = false;
+    submitButton.classList.remove('is-sending');
+    submitButton.textContent = buttonText;
   }
 });
