@@ -94,7 +94,7 @@
 
     <div class="footer-art">
       <div class="contact">
-        <span>לבירורים נוספים:</span>
+        <span>לבירורים:</span>
         <a class="contact__number" href="tel:+972587654337">05-876543-37</a>
         <a class="contact__icon contact__icon--phone" href="tel:+972587654337" aria-label="חיוג">
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h4l2 5l-2.5 1.5a11 11 0 0 0 5 5l1.5 -2.5l5 2v4a2 2 0 0 1 -2 2a16 16 0 0 1 -15 -15a2 2 0 0 1 2 -2"/></svg>
@@ -102,6 +102,10 @@
         <a class="contact__icon contact__icon--whatsapp" href="https://wa.me/972587654337?text=%D7%A9%D7%9C%D7%95%D7%9D%2C%20%D7%99%D7%A9%20%D7%9C%D7%99%20%D7%A9%D7%90%D7%9C%D7%94%20%D7%A2%D7%9C%20%D7%94%D7%A2%D7%A6%D7%95%D7%9E%D7%94" target="_blank" rel="noopener" aria-label="שליחת הודעה בוואטסאפ">
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 21l1.65 -3.8a9 9 0 1 1 3.4 2.9l-5.05 .9"/><path d="M9 10a.5 .5 0 0 0 1 0v-1a.5 .5 0 0 0 -1 0v1a5 5 0 0 0 5 5h1a.5 .5 0 0 0 0 -1h-1a.5 .5 0 0 0 0 1"/></svg>
         </a>
+        <span class="contact__share-label">לשיתוף:</span>
+        <button type="button" class="contact__icon contact__icon--share" data-share aria-label="שיתוף העצומה עם חברות">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="6" cy="12" r="3"/><circle cx="18" cy="6" r="3"/><circle cx="18" cy="18" r="3"/><path d="M8.7 10.7l6.6 -3.4"/><path d="M8.7 13.3l6.6 3.4"/></svg>
+        </button>
       </div>
     </div>
   </main>
@@ -192,7 +196,13 @@
     <div class="join-thanks" id="join-thanks" hidden>
       <h2 class="join-form__title">תודה שחתמת!</h2>
       <p class="join-thanks__text">נעדכן אותך בשלבי הקמת המסגרת.</p>
-      <button type="button" class="join-form__submit" data-close>סגירה</button>
+      <div class="join-thanks__actions">
+        <button type="button" class="join-share" data-share>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="6" cy="12" r="3"/><circle cx="18" cy="6" r="3"/><circle cx="18" cy="18" r="3"/><path d="M8.7 10.7l6.6 -3.4"/><path d="M8.7 13.3l6.6 3.4"/></svg>
+          <span>שיתוף עם חברות</span>
+        </button>
+        <button type="button" class="join-form__submit join-form__submit--quiet" data-close>סגירה</button>
+      </div>
     </div>
   </dialog>
 </body>

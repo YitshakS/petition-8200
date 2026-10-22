@@ -188,6 +188,17 @@ body {
 .contact__icon--phone { background: var(--navy); }
 .contact__icon--whatsapp { background: #25d366; }
 
+/* "לשיתוף:" and the quiet share icon (outlined), after a small gap, so that they do not read as a contact option */
+.contact__share-label { margin-inline-start: calc(1.4 * var(--u)); }
+
+.contact__icon--share {
+  padding: 0;
+  border: 1.5px solid var(--navy);
+  background: transparent;
+  color: var(--navy);
+  cursor: pointer;
+}
+
 .contact__icon svg {
   width: 62%;
   height: 62%;
@@ -198,6 +209,9 @@ body {
   stroke-linejoin: round;
 }
 
+.contact__icon--share svg { stroke: currentColor; }
+
+.contact button:focus-visible,
 .contact a:focus-visible {
   outline: 3px solid var(--focus);
   outline-offset: 2px;

@@ -63,6 +63,69 @@
   font-size: 1rem;
 }
 
+/* the two buttons of the thank-you screen, side by side */
+.join-thanks__actions {
+  display: flex;
+  gap: 10px;
+}
+
+.join-thanks__actions > * {
+  flex: 1;
+  width: auto;
+}
+
+/* a little smaller, so that "שיתוף עם חברות" stays on one line on the narrowest phones */
+.join-thanks__actions .join-share,
+.join-thanks__actions .join-form__submit {
+  font-size: 0.9rem;
+  white-space: nowrap;
+}
+
+.join-thanks__actions .join-share {
+  gap: 6px;
+  padding-right: 4px;
+  padding-left: 4px;
+}
+
+.join-thanks__actions .join-share svg {
+  width: 18px;
+  height: 18px;
+}
+
+/* "share with friends": the main button of the thank-you screen; "close" next to it is the quiet one */
+.join-share {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 13px 6px;
+  border: 0;
+  border-radius: 12px;
+  background: var(--navy);
+  color: #fff;
+  font: 900 1.1rem var(--font);
+  cursor: pointer;
+  transition: background-color 0.15s;
+}
+
+.join-share svg {
+  width: 20px;
+  height: 20px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.join-share:hover { background: var(--navy-hover); }
+.join-share:active { background: var(--navy-pressed); }
+
+.join-share:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 2px;
+}
+
 .join-form__close {
   position: absolute;
   top: 8px;
@@ -217,6 +280,17 @@
 .join-form__submit:hover { background: var(--navy-hover); }
 .join-form__submit:active { background: var(--navy-pressed); }
 .join-form__submit:disabled { opacity: 0.6; cursor: wait; }
+
+/* the quiet version (the "close" button of the thank-you screen) */
+.join-form__submit--quiet {
+  padding: 11px 6px;
+  border: 2px solid var(--border);
+  background: #fff;
+  color: var(--navy);
+}
+
+.join-form__submit--quiet:hover { background: var(--accent-soft); }
+.join-form__submit--quiet:active { background: var(--accent-soft); }
 
 .join-form__submit:focus-visible,
 .join-form__close:focus-visible {

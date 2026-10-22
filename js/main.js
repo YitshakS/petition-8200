@@ -26,6 +26,31 @@ const submitButton = form.querySelector('[type="submit"]');
 // When the form was first opened (0 = not yet); closing and re-opening does not restart it.
 let openedAt = 0;
 
+// ---- Share the petition with friends -----------------------------------------------
+
+const SHARE_MESSAGE = [
+  'היי!',
+  'ראיתי את זה וחשבתי עלייך 😊',
+  'רוצה לתרום לביטחון המדינה ביחידת המודיעין הכי משמעותית, 8200, אבל אין מסגרת תורנית לבנות דתיות שמאפשרת את זה? בדיוק על זה אנחנו מתארגנות!',
+  'מוזמנת לקרוא, לחתום ולהעביר הלאה לחברות נוספות 🤩',
+  'https://yitshaks.github.io/petition-8200',
+].join('\n\n');
+
+// Opens the phone's share sheet (WhatsApp and so on); where there is none, WhatsApp itself.
+async function sharePetition() {
+  if (navigator.share) {
+    try {
+      await navigator.share({ text: SHARE_MESSAGE });
+    } catch (error) {
+      // the person closed the share sheet: nothing to do
+    }
+    return;
+  }
+  window.open(`https://wa.me/?text=${encodeURIComponent(SHARE_MESSAGE)}`, '_blank', 'noopener');
+}
+
+document.querySelectorAll('[data-share]').forEach((button) => button.addEventListener('click', sharePetition));
+
 // ---- Open / close ------------------------------------------------------------
 
 document.getElementById('join').addEventListener('click', () => {
