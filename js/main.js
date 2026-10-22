@@ -36,9 +36,11 @@ const SHARE_MESSAGE = [
   'https://yitshaks.github.io/petition-8200',
 ].join('\n\n');
 
-// Opens the phone's share sheet (WhatsApp and so on); where there is none, WhatsApp itself.
+// On phones and tablets: the device's share sheet (it offers WhatsApp and so on).
+// On a computer: WhatsApp Web directly (a computer's share sheet mostly offers e-mail).
 async function sharePetition() {
-  if (navigator.share) {
+  const isTouchDevice = window.matchMedia('(pointer: coarse)').matches;
+  if (isTouchDevice && navigator.share) {
     try {
       await navigator.share({ text: SHARE_MESSAGE });
     } catch (error) {
